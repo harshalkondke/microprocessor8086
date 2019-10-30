@@ -1,0 +1,27 @@
+org 100h
+
+.data
+
+BCD db 84h
+Hex db ?
+
+.code
+
+mov ax, @data
+mov ds, ax
+
+mov bl, BCD
+mov al, bl
+and bl, 0Fh
+and al, 0F0h
+mov cl, 04
+rol al, cl
+mov BH, 0Ah
+mul BH
+add al, bl
+mov Hex, al
+        
+int 21h
+ends
+ret
+

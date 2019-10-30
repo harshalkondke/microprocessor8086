@@ -1,0 +1,34 @@
+org 100h
+
+.data
+
+n db 05h
+fact dw ?
+
+.code
+
+mov ax, @data
+mov ds, ax
+mov ax, 1
+mov bl, n
+mov bh, 0
+call factorial
+
+int 21h
+
+factorial proc
+    cmp bx, 1
+    je l1
+    push bx
+    dec bx
+    call factorial
+    pop bx
+    mul bx
+
+l1: ret
+    
+factorial endp 
+
+ends
+ret
+

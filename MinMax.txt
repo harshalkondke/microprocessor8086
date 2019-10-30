@@ -1,0 +1,27 @@
+org 100h
+
+.data
+
+arr db 02h,19h,01h,14h,0Ah,55h
+
+.code
+
+mov ax, @data
+mov ds, ax
+
+mov al, 0ffh/00h ; min/max
+mov cl, 06h
+lea bx, arr
+
+l2: cmp al, [bx]
+    jc/jnc l1    ; min/max
+    mov al, [bx]
+
+l1: inc bx
+    dec cl
+    cmp cl, 00h
+    jnz l2
+
+int 21h
+ends
+ret

@@ -1,0 +1,21 @@
+org 100h
+
+.data
+
+arr1 db 45h, 23h, 67h, 22h, 88h
+arr2 db ?
+
+.code
+
+mov ax, @data
+mov ds, ax
+lea si, arr1
+lea di, arr2
+mov cx, 0005
+cld
+rep movsb
+
+int 21h
+
+ends
+ret

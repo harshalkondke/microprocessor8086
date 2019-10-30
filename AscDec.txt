@@ -1,0 +1,34 @@
+org 100h
+
+.data
+
+arr db 99h,22h,12h,55h,33h
+count dw 5
+
+.code
+
+mov ax, @data
+mov ds, ax
+
+mov cx, count
+dec cx
+
+nextscan: mov bx, cx
+          lea si, arr
+
+nextcmp:  mov al, [si]
+          mov dl, [si+1]
+          cmp al, dl
+          jnc/jc noswap   ;dec/asc
+          mov [si], dl
+          mov [si+1], al
+
+noswap:   inc si
+          dec bx
+          jnz nextcmp
+
+loop nextscan
+
+int 21h
+ends
+ret

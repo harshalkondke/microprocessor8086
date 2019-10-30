@@ -1,0 +1,18 @@
+org 100h
+
+.data
+n1 dd 22222222h
+n2 dd 12122222h
+.code
+mov ax, word ptr n1
+mov bx, word ptr n2
+add/sub ax, bx
+mov cx, ax
+mov ax, word ptr n1+2
+mov dx, word ptr n2+2
+adc/sbb ax, dx
+mov ax, cx    
+int 21h
+ends
+
+ret

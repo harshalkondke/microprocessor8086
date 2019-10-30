@@ -1,0 +1,15 @@
+org 100h
+
+.data
+n1 dw 0003h
+n2 dw 0002h
+.code
+mov ax, @data
+mov bx, ax
+mov ax, n1
+mov bx, n2
+add/sub/mul/div bx
+int 21h
+end
+
+ret
